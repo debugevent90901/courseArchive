@@ -1,0 +1,1 @@
+ecoli.fastq deleted duo to file size limitation.
