@@ -1,0 +1,4 @@
+[
+    "(","count", "sum", "min", "max", "average", "deref",
+    "In", "distinct", "where", "count", "eqjoin"
+]
