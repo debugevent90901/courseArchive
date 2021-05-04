@@ -1,0 +1,40 @@
+Autograder Version 1.0.0
+2021-02-10 00:24:08
+
+Partners:
+
+Scoring:
+Test 0: 0/1
+Test 1: 0/1
+Test 2: 1/1
+Test 3: 0/1
+Test 4: 0/1
+Test 5: 0/1
+Test 6: 0/1
+Test 7: 0/1
+Test 8: 0/1
+Test 9: 0/1
+Total: 1/10
+
+
+Errors:
+[2021-02-10 00:24:08] Failed on test input_0.txt with error:
+Does not match expected output
+[2021-02-10 00:24:08] Failed on test input_1.txt with error:
+Does not match expected output
+[2021-02-10 00:24:08] Failed on test input_3.txt with error:
+Does not match expected output
+[2021-02-10 00:24:08] Failed on test input_4.txt with error:
+Does not match expected output
+[2021-02-10 00:24:08] Failed on test input_5.txt with error:
+Does not match expected output
+[2021-02-10 00:24:08] Failed on test input_6.txt with error:
+Does not match expected output
+[2021-02-10 00:24:08] Failed on test input_7.txt with error:
+Does not match expected output
+[2021-02-10 00:24:08] Failed on test input_8.txt with error:
+Does not match expected output
+[2021-02-10 00:24:08] Failed on test input_9.txt with error:
+Does not match expected output
+
+应该是写的早然后函数里local variables忘记进栈了，，，

@@ -1,0 +1,135 @@
+Buglog for ECE391 mp2
+Author: Tian Xie (tianxie3@illinois.edu)
+
+***********************************************
+Checkpoint1
+***********************************************
+
+1.  Date: 2021/03/06
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: When setting line comparator register's value to (IMAGE_Y_DIM - (FONT_HEIGHT+2)),
+                the screen exactly splitted into half and not expected.
+    Solution: Multiply the register's value by 2, i.e. 2*(IMAGE_Y_DIM - (FONT_HEIGHT+2)), which is
+                because VGA uses 2 scanning line.
+
+
+2.  Date: 2021/03/06
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: The status bar had correct location, but was not initialized to black color. Instead,
+                it just showed what was displayed on the top of the screen.
+    Solution: Changed the target_img in set_mode_X function to 0x05A0, which is the addresses needed
+                by the status bar.
+    
+
+3.  Date: 2021/03/07
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: After the status bar had correct location and initialized to black color, in the maze
+                game the player can still move beyond below the status bar and being blocked.
+    Solution: Reset the value of SCROLL_Y_DIM, subscribe it with 18(the height of a status bar). Now the
+                player would not go into it.
+    
+
+4.  Date: 2021/03/07
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: The text on the status bar was a little high.
+    Solution: When calculating the initial offset, forget to add another STATUS_BAR_X_DIM (the
+                empty pixel line above). 
+
+
+5.  Date: 2021/03/07
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: The time displayed on the status bar flashed much faster than normal time.
+    Solution: When inputting time argument to text2image routine, first divided it by the
+                update frequency of the RTC.
+    
+
+6.  Date: 2021/03/07
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: Masking technique worked, but the player would leave another shadow in the starting
+                point and not disappear.
+    Solution: I only apply masking inside the loop once, which should also be applied to initialized
+                outside the while loop.
+    
+
+7.  Date: 2021/03/08
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: When a fruit was near a wall, the player walked on it and stopped, but the fruit would 
+                not disappear until the player moved away.
+    Solution: Modify the unveil_around_player function and add another static variable in the mazegame.c file,
+                unveil_around_player would keep track whether a fruit is meet by player and set that static
+                variable, if_meet_fruit. And in my masking function, if this signal or need_redraw signal is high,
+                there should be a screen update.
+    
+
+8.  Date: 2021/03/08
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: The texts on the status bar about the number of fruits neglect the Plural Form. i.e. 2 fruits, 1 fruit
+                and 0 fruit.
+    Solution: Add an if-statement to distinguish the Plural Form.
+
+
+9.  Date: 2021/03/08
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: The text on the status bar was not centered.
+    Solution: I used a fixed-length array to hold the string, and I should use strlen() to get its actual length. So the
+                calculation could be right
+    
+
+10.  Date: 2021/03/13
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: The floating message showed beyond the upper edge of the screen.
+    Solution: I used an extra conditional statement, if the y-coordinate is < 0, then keep decrement until >=0.
+
+
+11.  Date: 2021/03/13
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: The text of the message is transparent, but not white.
+    Solution: I misuse the palette, which should be background color or (background color + 64). At first I wrongly 
+                set it as background color or (text color + 64). So it is still kind of transparent, but not as we 
+                desire.
+
+
+12.  Date: 2021/03/14
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: the floating message on the screen kept flashing and is not sync with frames
+    Solution: I update the screen (show_screen()) more than once in the rtc_thread, which makes the screen "flash". As 
+                a result, I integrate the masking function and the floating message function, which both needs a update, 
+                and change the logic of the triggering to make sure there is only one update in a frame.
+
+
+14.  Date: 2021/03/15
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: The compiler continuously report me the error about ";", while I am confident that my code are correct.
+    Solution: It is a stupid mistake, I mistakenly add a ";" to the end of a macro, which I took really a long time to debug,
+                so I think it necessary to record it.
+
+
+15.  Date: 2021/03/15
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: When I type sudo ./mazegame, nothing happened and the vm logged out and require me to log again.
+    Solution: I made a typo in the main function of mazegame.c. It should be fd = open("/dev/rtc", O_RDONLY, 0);
+                fd_tux = open("/dev/ttyS0", O_RDWR | O_NOCTTY). But I typed fd twice. i.e. open two files to fd.
+                Though it is a simple, stupid mistake but its bahavior is really weird and I don't know why. So I 
+                record it.
+
+
+16.  Date: 2021/03/15
+    Reported by: Tian Xie
+    Resolved by: Tian Xie
+    Problem: The game freezes at the exit.
+    Solution: From the piazza I know at the end of the main function is mazegame.c, we should use pthread_cancel(tid3) instead of
+                pthread_join(tid3), which close the thread.
