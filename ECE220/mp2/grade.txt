@@ -1,0 +1,26 @@
+
+INPUT:     10/10
+DECODE:    10/10
+PRINT:     10/10
+EVALUATE:  50/50
+PLUS:      1/1
+MINUS:     2/2
+MULTIPLY:  3/3
+DIVIDE:    4/4
+
+Functionality total: 90/90
+
+
+Style: 5/5
+Comments, Formatting, Intro Paragraph: 5/5
+
+Challenge
+multiple digit operands:  12/15
+- Does not work on input "123"
+invalid input:            5/5
+
+Challenge total:          17/20
+
+Individual work:          0/5
+
+Total:  117

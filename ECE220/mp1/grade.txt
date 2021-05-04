@@ -1,0 +1,56 @@
+
+Functionality: 80/80
+
+[Not counted for MP1] Style: 0/5
+ - manual loop
+[Not counted for MP1] Comments: 5/5
+ + comments could be more brief next time :)
+[Not counted for MP1] Formatting: 5/5
+Intro Paragraph: 5/5
+
+Total: 100
+
+STARTING PASS 1
+0 errors found in first pass.
+STARTING PASS 2
+0 errors found in second pass.
+
+
+
+56c56
+< R0=x0000 R1=x7FFF R2=x0000 R3=x005B R4=x0001 R5=x0030 R6=xFFF8 R7=x0490 
+---
+> R0=x0000 R1=x7FFF R2=x001B R3=x0000 R4=x0004 R5=x0004 R6=x0000 R7=x0490 
+
+
+
+
+56c56
+< R0=x0000 R1=x7FFF R2=x0000 R3=x005B R4=x0000 R5=x0030 R6=xFFF7 R7=x0490 
+---
+> R0=x0000 R1=x7FFF R2=x001B R3=x0000 R4=x0004 R5=x0004 R6=x0000 R7=x0490 
+
+
+
+
+56c56
+< R0=x0000 R1=x7FFF R2=x0000 R3=x005B R4=x0000 R5=x0030 R6=xFFF7 R7=x0490 
+---
+> R0=x0000 R1=x7FFF R2=x001B R3=x0000 R4=x0004 R5=x0004 R6=x0000 R7=x0490 
+
+
+
+
+56c56
+< R0=x0000 R1=x7FFF R2=x0000 R3=x005B R4=x0000 R5=x0030 R6=xFFF7 R7=x0490 
+---
+> R0=x0000 R1=x7FFF R2=x001B R3=x0000 R4=x0004 R5=x0004 R6=x0000 R7=x0490 
+
+
+
+
+56c56
+< R0=x0000 R1=x7FFF R2=x0000 R3=x005B R4=x0000 R5=x0030 R6=xFFF7 R7=x0490 
+---
+> R0=x0000 R1=x7FFF R2=x001B R3=x0000 R4=x0004 R5=x0004 R6=x0000 R7=x0490 
+

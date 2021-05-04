@@ -1,0 +1,24 @@
+getRadius: 5/5
+calculateGausFilter: 12/12
+convolveImage: 35/35
+transformImage: 25/25
+nearestPixel: 13/13
+
+Functionality: 90/90
+
+invertImage: 3/3
+colorDodge: 4/4
+convertToGray: 3/3
+pencilSketch: 5/5
+Pixelate: 5/5
+
+Extra credits: 20/20
+
+Compilation generates no warnings: 5/5
+Comments and formatting: 5/5
+
+Solo work bonus: 5/5
+
+segfault penalty: 0/-10
+
+Total: 125 

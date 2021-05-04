@@ -1,0 +1,78 @@
+Test one
+1 -6 10 -1 -6 1 4 
+********
+Points lost: 0
+
+Test two
+1 6 12 11 6 3 6 
+********
+Points lost: 0
+
+Test three
+3 -8 -2 -5 6 0 5
+
+********
+Points lost: 0
+
+Test four
+1 10 29 32 12 0 5
+********
+Points lost: 0
+
+Test five
+1 -6 -3 16 12 5 8
+********
+Points lost: 0
+
+Test six
+-1 10 -5 8 -100 0 8
+********
+Points lost: 5
+********
+Your output
+-----------
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 9.441339
+Root found: 9.441339
+-----------
+Expected output
+-----------
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+Root found: 2.444082
+No roots found.
+No roots found.
+-----------
+
+
+Functionality: 85/90
+Comments and Style: 5/5
+Intro Paragraph: 5/5
+
+Total: 95

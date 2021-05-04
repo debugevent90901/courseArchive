@@ -1,0 +1,18 @@
+
+Test one:
+Total error is 0.000000 percent.
+
+Test two:
+Total error is 0.000000 percent.
+
+Test three:
+Total error is 0.000000 percent.
+
+Test one-rk:
+Total error is 0.000000 percent.
+
+Test two-rk:
+Total error is 0.000000 percent.
+
+Test three-rk:
+Total error is 0.000000 percent.

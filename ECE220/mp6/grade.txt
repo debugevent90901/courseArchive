@@ -1,0 +1,12 @@
+norm-countLiveNeighbor: 20 
+norm-updateBoard: 30 
+norm-aliveStable: 10 
+countLiveNeighbor: 10 
+updateBoard: 10 
+aliveStable: 10 
+Functionality Total: 90
+
+Intro: 5/5
+Format and comments: 5/5
+
+Total: 100

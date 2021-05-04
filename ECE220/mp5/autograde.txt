@@ -1,0 +1,3 @@
+dealloc_stack: 10/10
+result: 30/30
+Total: 40/40

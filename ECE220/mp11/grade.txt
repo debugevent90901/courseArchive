@@ -1,0 +1,23 @@
+Compiler Output:
+****************
+gcc -c -Wall -g -o mp11.o mp11.c
+gcc -c -Wall -g -o mp11match.o mp11match.c
+gcc -c -Wall -g -o mp11main.o mp11main.c
+gcc mp11.o mp11match.o mp11main.o -o mp11 -g -lm
+
+Grade:
+******
+Late submission: 
+match_requests works correctly: 15/15
+find_nodes works correctly: 0/15
+trim_nodes works correctly: 0/5
+dijkstra works correctly: 0/25
+Functionality subtotal: 15/60
+find_nodes is reasonably efficient: 0/5
+trim_nodes compresses in place: Not Yet Graded
+Heap implemented well in dijkstra: Not Yet Graded
+Only one call of dijkstra required: Not Yet Graded
+Introductory paragraph: Not Yet Graded
+Function headers: Not Yet Graded
+Clear and well-commented: Not Yet Graded
+Total: Not Yet Tallied
