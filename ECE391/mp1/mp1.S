@@ -335,7 +335,8 @@ mp1_ioctl_find:
 
         movl $0, %edi                   # set the higher 16-bit of %edi=0, convention of my auxiliary search
         movw LOCATION(%ebx), %di        # %di = the location we want to search
-
+        
+        # FIXME: MAGIC NUMBER HERE, got -1 during demo
         # check the location error
         # 80*25-1 = 1999, if this fails, no need to do the following
         cmpw $0, %di

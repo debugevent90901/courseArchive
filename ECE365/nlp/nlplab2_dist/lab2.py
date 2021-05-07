@@ -332,7 +332,7 @@ def make_numpy(bags_of_words, vocab):
 
 
 def better_model():
-    scikit_log_reg = LogisticRegression(solver='lbfgs')   ## Tune parameters for this function.
+    scikit_log_reg = LogisticRegression()   ## Tune parameters for this function.
     # BEGIN SOLUTION
     scikit_log_reg.C = 0.08
     return scikit_log_reg
@@ -410,7 +410,7 @@ def get_top_features_LR(scikit_log_reg, vocab, label_set, label, k):
 
     # BEGIN SOLUTION
     vocab = sorted(vocab)
-    coef = scikit_log_reg.coef_
+    coef=scikit_log_reg.coef_
 
     index = None
     for i in range(len(label_set)):

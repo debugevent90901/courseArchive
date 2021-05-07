@@ -3,7 +3,6 @@ import statsmodels.api as sm
 import numpy as np
 import statsmodels
 
-
 class Lab3(object):
 
     def create_data(self, snp_lines):
@@ -12,24 +11,27 @@ class Lab3(object):
         Output - You should return the 53 x 3902 dataframe
         '''
         # start code here
+        column_names = []
+        snp = []
+        for i in snp_lines:
+            row = i.split()
+            snp.append(row)
+            column_names.append(str(row[0])+':'+str(row[1]))
         df = np.zeros((53, 3902))
-        column_name = []
         for i in range(len(snp_lines)):
-            line = snp_lines[i].split("\t")
-            line[-1] = line[-1][:-3]
-            column_name.append(line[2])
             for j in range(9, 62):
-                # print(line[j])
-                if '.' in line[j]:
-                    df[j-9][i] = np.nan
-                elif '1' == line[j]:
-                    df[j-9][i] = 1
-                elif '0' == line[j]:
+                if snp[i][j]== '0/0':
                     df[j-9][i] = 0
+                elif snp[i][j]== '1/0':
+                    df[j-9][i] = 1
+                elif snp[i][j]== '0/1':
+                    df[j-9][i] = 1
+                elif snp[i][j]== '1/1':
+                    df[j-9][i] = 2
                 else:
-                    df[j-9][i] = (int(line[j][0]) + int(line[j][2]))
+                    df[j-9][i] = np.nan
         df = pd.DataFrame(df)
-        df.columns = column_name
+        df.columns = column_names
         return df
         # end code here
 
@@ -54,15 +56,17 @@ class Lab3(object):
         Input - snp_data dataframe
         Output - list of pvalues and list of betavalues
         '''
-        # start code here
-        ytrain = df[['target']]
-        columns = df.columns
-        for i in range(len(columns)):
-            xtrain = df[[columns[i]]]
-            xtrain = sm.add_constant(xtrain)
-            log_reg = sm.Logit(ytrain, xtrain).fit(method='bfgs', disp=False)
-
+        # start code here 
+        p_values, beta_values = [], []
+        ytrain = list(df['target'])
+        for i in df.columns[: 3902]:
+            xtrain = sm.add_constant(list(df[i]))
+            LR = sm.Logit(ytrain, xtrain, missing='drop').fit(method='bfgs', disp=False)
+            p_values.append(round(LR.pvalues[1], 9))
+            beta_values.append(round(LR.params[1], 5))
+        return p_values, beta_values
         # end code here
+    
 
     def get_top_snps(self, snp_data, p_values):
         '''
@@ -70,5 +74,9 @@ class Lab3(object):
         Output - list of 5 tuples, each with chromosome and position
         '''
         # start code here
-
-        # end code here
+        res = []
+        top_snps_p_values = np.argsort(p_values)[: 5]
+        for i in top_snps_p_values:
+            label = snp_data.columns[i]
+            res.append(tuple(label.split(":")))
+        return res

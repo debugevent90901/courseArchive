@@ -8,6 +8,9 @@
  * Puskar Naha 2013
  */
 
+// FIXME: NO FUNCTION PROTOTYPE IN THIS FILE, got -1 during demo
+// FIXME: LED reset has some errors at high refresh rate, got -2 during demo
+
 #include <asm/current.h>
 #include <asm/uaccess.h>
 
