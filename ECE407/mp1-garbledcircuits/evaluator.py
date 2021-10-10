@@ -20,9 +20,11 @@ class GarbledCircuitEvaluator(BooleanCircuit):
         if from_json is not None:
             
             # Load the garbled tables
-            gates = from_json["gates"]
+            self.gates = from_json["gates"]
 
             # TODO: your code goes here
+            # nothing to do here
+
 
     def garbled_evaluate(self, inp):
         # Precondition: initialized, topologically sorted
@@ -39,8 +41,16 @@ class GarbledCircuitEvaluator(BooleanCircuit):
             assert len(label) == 2 * 16  # Labels are keys, 16 bytes in hex
             self.wire_labels[wid] = label
 
-        # TODO: Your code goes here
-
+        # # TODO: Your code goes here
+        for i in sorted(self.gates.keys(), key=lambda y: int(y[1:])):
+            inp = self.gates[i]["inp"]
+            for j in self.gates[i]["garble_table"]:
+                _tmp = specialDecryption(bytes.fromhex(self.wire_labels[inp[0]]), bytes.fromhex(j))
+                if (_tmp != None):
+                    _tmp = specialDecryption(bytes.fromhex(self.wire_labels[inp[1]]), _tmp)
+                    if (_tmp != None):
+                        self.wire_labels[self.gates[i]["out"][0]] = _tmp.hex()
+        
         return dict((wid,self.wire_labels[wid]) for wid in self.output_wires)
 
         
@@ -58,7 +68,8 @@ if __name__ == '__main__':
     print('Garbled circuit loaded: %d gates, %d input wires, %d output_wires, %d total' \
         % (len(c.gates), len(c.input_wires), len(c.output_wires), len(c.wires)), file=sys.stderr)
 
-    # Evaluate the circuit
+    # # Evaluate the circuit
     inputs = obj["inputs"]
+    # print(type(inputs))
     json.dump(c.garbled_evaluate(inputs), sys.stdout, indent=4)
     print('') # end the line

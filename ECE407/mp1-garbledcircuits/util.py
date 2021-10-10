@@ -24,12 +24,17 @@ In a comment below this line, explain the differences between
 each, and justify your choice of one of them.
 
 TODO: Your answer goes here
+
+random:         implements deterministic PRNGs, support seed to reproduce the same output, predictable but not cryptographically secure
+SystemRandom:   a class that uses os.urandom to generate random numbers
+os.urandom:     uses system entropy sources to enhance random, more cryptographic and unpredictable 
+
 """
 def random_bytes(n):
     # TODO: Your code goes here
 
     # Option 1
-    # return os.urandom(n)
+    return os.urandom(n)
 
     # Option 2
     # return ''.join(chr(random.randint(0,256)) for _ in range(n))
@@ -38,13 +43,11 @@ def random_bytes(n):
     # rnd = random.SystemRandom()
     # return ''.join(chr(rnd.randint(0,256)) for _ in range(n))
 
-    pass
-
 
 KEYLENGTH = 128; # n from Course in Cryptography textbook
 
 def generate_key():
-    return random_bytes(KEYLENGTH//8)
+    return random_bytes(KEYLENGTH//8)   # 128//8=16
 
 
 def lengthQuadruplingPRF(k, r):
@@ -69,6 +72,17 @@ def specialEncryption(k, m):
     assert len(m) <= KEYLENGTH//8 * 3  # m must be bounded in size
 
     # TODO: Your code goes here
+    r = generate_key()
+
+    # Compute the PRF
+    prf = lengthQuadruplingPRF(k, r)
+
+    padding_msg = b'\x00'*(KEYLENGTH//8) + m
+    encrypted_padding_msg = b''.join(bytes([a^b]) for (a, b) in zip (padding_msg, prf))
+
+    c = r + encrypted_padding_msg
+    return c
+
 
 def specialDecryption(k, c):
     assert len(k) == KEYLENGTH//8
@@ -100,4 +114,9 @@ if __name__ == '__main__':
     for i in range(1000):
         l = random.randint(16,48)
         m = random_bytes(l)
+        # a = specialEncryption(k, m)
+        # b = specialDecryption(k, a)
+        # print(a)
+        # print(b)
+        # print(b==m)
         assert specialDecryption(k, specialEncryption(k, m)) == m
